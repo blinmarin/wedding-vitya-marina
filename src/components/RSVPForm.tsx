@@ -55,24 +55,21 @@ export function RSVPForm() {
     };
 
     try {
-      const params = new URLSearchParams({
-        name: submitData.name,
-        attending: submitData.attending,
-        alcohol: submitData.alcohol,
+      const response = await fetch("/api/rsvp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(submitData),
       });
 
-      const response = await fetch(
-        `https://script.google.com/macros/s/AKfycbwnHt9u04ILFH-Q_BS_6zaSs2vvSJkQGJGdxaR_kSyOkAzDMYxP8BwMvuY0P5VVbGfX/exec?${params.toString()}`,
-        {
-          method: "GET",
-        }
-      );
+      const result = await response.json();
 
-      if (response.ok) {
+      if (result.success) {
         setIsSubmitting(false);
         setIsSubmitted(true);
       } else {
-        throw new Error("Failed to submit");
+        throw new Error(result.error || "Failed to submit");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -97,9 +94,6 @@ export function RSVPForm() {
           <h3 className="text-2xl font-bold text-deep mb-2">Спасибо!</h3>
           <p className="text-gray-600">
             Ваш ответ сохранён. Ждём вас на свадьбе!
-          </p>
-          <p className="text-sm text-gray-400 mt-4 italic">
-            «Британские учёные доказали: вы — лучший гость»
           </p>
         </div>
       </div>
@@ -253,8 +247,6 @@ export function RSVPForm() {
             )}
           </button>
         </div>
-
-
       </div>
     </form>
   );
