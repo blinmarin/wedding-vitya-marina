@@ -272,7 +272,7 @@ export default function Home() {
                       <h3 className="text-xl font-semibold text-deep">
                         🚌 Сбор на автобус
                       </h3>
-                      <p className="text-gray-800">Метро Физтех, у выхода №1</p>
+                      <p className="text-gray-800">Метро Физтех</p>
                     </div>
                   </div>
                   <img
