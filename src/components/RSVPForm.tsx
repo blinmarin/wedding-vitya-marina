@@ -63,13 +63,24 @@ export function RSVPForm() {
         body: JSON.stringify(submitData),
       });
 
-      const result = await response.json();
+      const text = await response.text();
+      
+      let result = { success: false };
+      if (text) {
+        try {
+          result = JSON.parse(text);
+        } catch {
+          result = { success: response.ok };
+        }
+      } else {
+        result = { success: response.ok };
+      }
 
-      if (result.success) {
+      if (result.success || response.ok) {
         setIsSubmitting(false);
         setIsSubmitted(true);
       } else {
-        throw new Error(result.error || "Failed to submit");
+        throw new Error("Failed to submit");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
