@@ -1,15 +1,58 @@
+@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Nunito:wght@400;600;700;800&family=Press+Start+2P&family=Caveat:wght@500;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
+@theme {
+  /* Colors */
   --color-base: #F5F5F5;
   --color-accent: #FF6B8B;
   --color-mint: #2DE2A0;
   --color-deep: #0A2342;
   --color-sunny: #FFD166;
+
+  /* Font families */
+  --font-impact: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  --font-display: 'Lobster', cursive;
+  --font-body: 'Nunito', sans-serif;
+  --font-pixel: 'Press Start 2P', monospace;
+
+  /* Animations */
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-shake: shake 0.5s ease-in-out;
+  --animate-pop: pop 0.3s ease-out;
+  --animate-slide-in: slideIn 0.5s ease-out;
+  --animate-wiggle: wiggle 1s ease-in-out infinite;
+  --animate-fadeIn: fadeIn 0.3s ease-out;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes pop {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideIn {
+  0% { transform: translateX(-100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 * {

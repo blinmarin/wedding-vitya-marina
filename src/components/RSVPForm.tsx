@@ -90,8 +90,11 @@ export function RSVPForm() {
           </div>
         </div>
         <div className="p-8 bg-white text-center">
-          <p className="text-6xl mb-4">🎉</p>
-          <h3 className="text-2xl font-bold text-deep mb-2">Спасибо!</h3>
+          <img
+            src="/images/spasibo.gif"
+            alt="Спасибо!"
+            className="mx-auto mb-4 max-w-full"
+          />
           <p className="text-gray-600">
             Ваш ответ сохранён. Ждём вас на свадьбе!
           </p>
