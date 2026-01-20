@@ -55,33 +55,24 @@ export function RSVPForm() {
     };
 
     try {
-      const response = await fetch("/api/rsvp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(submitData),
+      const GOOGLE_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbwnHt9u04ILFH-Q_BS_6zaSs2vvSJkQGJGdxaR_kSyOkAzDMYxP8BwMvuY0P5VVbGfX/exec";
+
+      const params = new URLSearchParams({
+        name: submitData.name,
+        attending: submitData.attending,
+        alcohol: submitData.alcohol,
       });
 
-      const text = await response.text();
-      
-      let result = { success: false };
-      if (text) {
-        try {
-          result = JSON.parse(text);
-        } catch {
-          result = { success: response.ok };
-        }
-      } else {
-        result = { success: response.ok };
-      }
+      await fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, {
+        method: "GET",
+        mode: "no-cors",
+      });
 
-      if (result.success || response.ok) {
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-      } else {
-        throw new Error("Failed to submit");
-      }
+      // С mode: 'no-cors' мы не можем проверить ответ,
+      // но данные отправляются в Google Sheets
+      setIsSubmitting(false);
+      setIsSubmitted(true);
     } catch (error) {
       console.error("Error submitting form:", error);
       setIsSubmitting(false);
