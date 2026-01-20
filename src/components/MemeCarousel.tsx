@@ -310,7 +310,7 @@ export function MemeCarousel() {
 
         {/* Image container - height ~325px with 16:9 aspect ratio */}
         <div
-          className={`relative w-[444px] md:w-[578px] rounded-xl border-4 shadow-xl transition-all duration-300 ${
+          className={`relative w-[240px] sm:w-[320px] md:w-[578px] rounded-xl border-4 shadow-xl transition-all duration-300 ${
             isCurrentWrong
               ? "border-red-500 bg-red-100"
               : isCurrentSelected && isCurrentCorrect
@@ -336,7 +336,7 @@ export function MemeCarousel() {
           {/* Pointing hand emoji - draws attention to checkbox */}
           {!isCurrentSelected && (
             <div
-              className="absolute bottom-4 right-20 text-6xl animate-point-down"
+              className="absolute bottom-4 right-10 md:right-20 text-2xl md:text-6xl animate-point-down"
               style={{ animation: "point-bounce 1.5s ease-in-out infinite" }}
             >
               👉

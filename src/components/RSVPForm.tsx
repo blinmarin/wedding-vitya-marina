@@ -16,6 +16,7 @@ export function RSVPForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   const alcoholOptions = [
     { id: "champagne", label: "🍾 Шампанское" },
@@ -92,11 +93,19 @@ export function RSVPForm() {
           </div>
         </div>
         <div className="p-8 bg-white text-center">
-          <img
-            src="/images/spasibo.gif"
-            alt="Спасибо!"
-            className="mx-auto mb-4 max-w-full"
-          />
+          <div className="relative mx-auto mb-4 max-w-full">
+            {!isImageLoaded && (
+              <div className="w-64 h-48 mx-auto bg-gray-200 animate-pulse rounded-lg" />
+            )}
+            <img
+              src="/images/spasibo.gif"
+              alt="Спасибо!"
+              className={`mx-auto max-w-full transition-opacity duration-300 ${
+                isImageLoaded ? "opacity-100" : "opacity-0 absolute top-0 left-1/2 -translate-x-1/2"
+              }`}
+              onLoad={() => setIsImageLoaded(true)}
+            />
+          </div>
           <p className="text-gray-600">
             Ваш ответ сохранён. Ждём вас на свадьбе!
           </p>

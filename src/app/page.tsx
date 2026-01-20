@@ -4,6 +4,7 @@ import { RSVPForm } from "@/components/RSVPForm";
 import { MemeCarousel } from "@/components/MemeCarousel";
 import { MapReveal } from "@/components/MapReveal";
 import { WishlistAccordion } from "@/components/WishlistAccordion";
+import { ScheduleAccordion } from "@/components/ScheduleAccordion";
 import { NyanCat } from "@/components/NyanCat";
 
 export default function Home() {
@@ -13,14 +14,28 @@ export default function Home() {
       <div>
         {/* ============ HERO SECTION ============ */}
         <section
-          className="relative min-h-screen flex flex-col items-center justify-center px-2 py-16"
-          style={{
-            backgroundImage: "url(/images/carpet.jpg)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
+          className="relative min-h-screen flex flex-col items-center justify-center px-2 py-16 overflow-hidden"
         >
+          {/* Background image - mobile: rotated, natural size, repeating */}
+          <div
+            className="absolute inset-0 md:block"
+            style={{
+              backgroundImage: "url(/images/carpet2.jpg)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+          {/* Background image - desktop: cover, no rotation */}
+          <div
+            className="absolute inset-0 hidden md:block"
+            style={{
+              backgroundImage: "url(/images/carpet.jpg)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/40"></div>
 
@@ -65,11 +80,63 @@ export default function Home() {
         </section>
 
         {/* ============ INVITATION SECTION ============ */}
-        <section className="pt-32 pb-32 px-2 bg-white">
+        <section className="pt-16 md:pt-32 pb-16 md:pb-32 px-4 bg-white">
           <div className="max-w-7xl mx-auto">
+            
+
+            {/* Mobile grid: 2 columns with text in middle */}
+            <div className="md:hidden">
+              {/* Row 1: [2][3] */}
+              <div className="grid grid-cols-2 gap-3 mb-3">
+                <div className="transform rotate-3">
+                  <img src="/scrin/2.png" alt="Скриншот 2" className="w-full h-auto rounded-lg shadow-lg" />
+                </div>
+                <div className="transform -rotate-3">
+                  <img src="/scrin/3.png" alt="Скриншот 3" className="w-full h-auto rounded-lg shadow-lg" />
+                </div>
+              </div>
+              {/* Row 2: [4][5] */}
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                <div className="transform -rotate-2">
+                  <img src="/scrin/4.png" alt="Скриншот 4" className="w-full h-auto rounded-lg shadow-lg" />
+                </div>
+                <div className="transform rotate-2">
+                  <img src="/scrin/5.png" alt="Скриншот 5" className="w-full h-auto rounded-lg shadow-lg" />
+                </div>
+              </div>
+              {/* Text in middle */}
+              <div className="text-center px-4 mb-6">
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Наконец-то! Вы долго ждали этого — и вот время пришло. Мы
+                  решили устроить главную вечеринку нашей жизни, и нам важно,
+                  чтобы ты разделил с нами этот день. Ждём тебя, твоё отличное
+                  настроение и готовность веселиться от всей души!
+                </p>
+              </div>
+              {/* Row 3: [1][9] */}
+              <div className="grid grid-cols-2 gap-3 mb-3">
+                <div className="transform rotate-3">
+                  <img src="/scrin/1.png" alt="Скриншот 1" className="w-full h-auto rounded-lg shadow-lg" />
+                </div>
+                <div className="transform -rotate-3">
+                  <img src="/scrin/9.jpg" alt="Скриншот 9" className="w-full h-auto rounded-lg shadow-lg" />
+                </div>
+              </div>
+              {/* Row 4: [7][8] */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="transform -rotate-2 -mt-[60px]">
+                  <img src="/scrin/7.png" alt="Скриншот 7" className="w-full h-auto rounded-lg shadow-lg" />
+                </div>
+                <div className="transform rotate-2">
+                  <img src="/scrin/8.png" alt="Скриншот 8" className="w-full h-auto rounded-lg shadow-lg" />
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop grid: original 3x3 layout */}
             <div
+              className="hidden md:grid"
               style={{
-                display: "grid",
                 gridTemplateColumns: "repeat(3, 1fr)",
                 gap: "24px",
                 alignItems: "center",
@@ -172,28 +239,28 @@ export default function Home() {
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/10"></div>
 
-          <div className="w-fit mx-auto relative z-10 bg-white/70 backdrop-blur-sm rounded-2xl p-6">
+          <div className="w-fit mx-auto relative z-10 bg-white/70 backdrop-blur-sm rounded-2xl p-4 md:p-6">
             {/* Calendar and Carousel row */}
-            <div className="flex flex-col md:flex-row items-start justify-center gap-8 md:gap-12">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
               {/* Calendar with subtitle */}
               <div className="flex flex-col items-center">
-                <p className="text-accent font-semibold uppercase tracking-widest mb-4 self-start ml-[5px]">
+                <p className="text-accent font-semibold uppercase tracking-widest mb-4 text-center md:self-start md:ml-[5px]">
                   📅 Дата свадьбы
                 </p>
                 <img
                   src="/images/cal-Photoroom.png"
                   alt="30 мая 2026 - дата свадьбы"
-                  className="w-72 md:w-80 h-auto drop-shadow-xl"
+                  className="w-64 md:w-80 h-auto drop-shadow-xl"
                 />
-                <p className="text-gray-500 mt-4 text-lg">
+                <p className="text-gray-500 mt-4 text-lg text-center">
                   Суббота • Начало в 12:30
                 </p>
               </div>
 
               {/* Meme Carousel with title above */}
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center w-full md:w-auto">
                 {/* Title above carousel */}
-                <h3 className="text-center text-3xl font-bold text-deep mb-4">
+                <h3 className="text-center text-2xl md:text-3xl font-bold text-deep mb-4">
                   Угадай, что за день
                 </h3>
 
@@ -213,7 +280,7 @@ export default function Home() {
                   📍 Место проведения
                 </p>
                 <h2 className="text-3xl md:text-4xl font-bold text-deep mb-4">
-                  Площадка «Остров Любви»
+                  Площадка<br className="md:hidden" /> «Остров Любви»
                 </h2>
                 <p className="text-xl text-gray-600 leading-relaxed">
                   Московская область,
@@ -222,14 +289,22 @@ export default function Home() {
                   <br />
                   село Ольгово
                 </p>
+
+                {/* Travel image - mobile only, shown before buttons */}
+                <img
+                  src="/images/trevel.jpg"
+                  alt="Путешествие"
+                  className="md:hidden h-[200px] w-auto rounded-2xl shadow-xl mx-auto my-4"
+                />
+
                 <MapReveal />
               </div>
 
-              {/* Travel image */}
+              {/* Travel image - desktop only */}
               <img
                 src="/images/trevel.jpg"
                 alt="Путешествие"
-                className="h-[338px] w-auto rounded-2xl shadow-xl"
+                className="hidden md:block h-[338px] w-auto rounded-2xl shadow-xl"
               />
             </div>
           </div>
@@ -249,7 +324,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/10"></div>
 
           <div className="max-w-5xl mx-auto relative z-10">
-            <div className="text-center mb-16 bg-white/50 backdrop-blur-sm rounded-2xl px-6 py-6">
+            <div className="text-center mb-6 md:mb-16 bg-white/50 backdrop-blur-sm rounded-2xl px-6 py-6">
               <p className="text-gray-800 font-semibold uppercase tracking-widest mb-2">
                 📅 Расписание
               </p>
@@ -262,158 +337,210 @@ export default function Home() {
               {/* Schedule items */}
               <div className="space-y-2">
                 {/* 12:30 - Bus — мем справа */}
-                <div className="grid md:grid-cols-[1fr_430px_1fr] gap-4 items-center p-4">
-                  <div className="hidden md:block"></div>
-                  <div className="flex items-center gap-4 justify-self-start bg-white/50 backdrop-blur-sm rounded-2xl p-3 w-full h-24 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                    <span className="text-3xl font-bold text-gray-900 w-24">
-                      12:30
-                    </span>
-                    <div>
-                      <h3 className="text-xl font-semibold text-deep">
-                        🚌 Сбор на автобус
-                      </h3>
-                      <p className="text-gray-800">Метро Физтех</p>
-                    </div>
-                  </div>
-                  <img
-                    src="/images/1.jpg"
-                    alt="Мем 1"
-                    className="w-56 h-auto rounded-xl shadow-lg justify-self-start -my-6"
+                <div className="p-4">
+                  {/* Mobile accordion */}
+                  <ScheduleAccordion
+                    time="12:30"
+                    title="🚌 Сбор на автобус"
+                    subtitle="Метро Физтех"
+                    memeImg="/images/1.jpg"
+                    memeAlt="Мем 1"
+                    showHint={true}
                   />
+                  {/* Desktop layout */}
+                  <div className="hidden md:grid grid-cols-[1fr_430px_1fr] gap-4 items-center">
+                    <div></div>
+                    <div className="flex items-center gap-4 justify-self-start bg-white/50 backdrop-blur-sm rounded-2xl p-3 w-full h-24 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                      <span className="text-3xl font-bold text-gray-900 w-24">
+                        12:30
+                      </span>
+                      <div>
+                        <h3 className="text-xl font-semibold text-deep">
+                          🚌 Сбор на автобус
+                        </h3>
+                        <p className="text-gray-800">Метро Физтех</p>
+                      </div>
+                    </div>
+                    <img
+                      src="/images/1.jpg"
+                      alt="Мем 1"
+                      className="w-56 h-auto rounded-xl shadow-lg justify-self-start -my-6"
+                    />
+                  </div>
                 </div>
 
                 {/* 14:30 - Welcome — картинка слева */}
-                <div className="grid md:grid-cols-[1fr_430px_1fr] gap-4 items-center p-4">
-                  <div className="hidden md:flex justify-end">
-                    <img
-                      src="/images/2.jpg"
-                      alt="Мем 2"
-                      className="w-56 h-auto rounded-xl shadow-lg -my-6"
-                    />
-                  </div>
-                  <div className="flex items-center gap-4 justify-self-start bg-white/50 backdrop-blur-sm rounded-2xl p-3 w-full h-24 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                    <span className="text-3xl font-bold text-gray-900 w-24">
-                      14:30
-                    </span>
-                    <div>
-                      <h3 className="text-xl font-semibold text-deep">
-                        🥂 Велком
-                      </h3>
-                      <p className="text-gray-800">
-                        Встречаем гостей, напитки и закуски
-                      </p>
-                    </div>
-                  </div>
-                  <img
-                    src="/images/2.jpg"
-                    alt="Мем 2"
-                    className="md:hidden w-48 h-auto rounded-xl shadow-lg"
+                <div className="p-4">
+                  {/* Mobile accordion */}
+                  <ScheduleAccordion
+                    time="14:30"
+                    title="🥂 Велком"
+                    subtitle="Встречаем гостей, напитки и закуски"
+                    memeImg="/images/2.jpg"
+                    memeAlt="Мем 2"
                   />
-                  <div className="hidden md:block"></div>
+                  {/* Desktop layout */}
+                  <div className="hidden md:grid grid-cols-[1fr_430px_1fr] gap-4 items-center">
+                    <div className="flex justify-end">
+                      <img
+                        src="/images/2.jpg"
+                        alt="Мем 2"
+                        className="w-56 h-auto rounded-xl shadow-lg -my-6"
+                      />
+                    </div>
+                    <div className="flex items-center gap-4 justify-self-start bg-white/50 backdrop-blur-sm rounded-2xl p-3 w-full h-24 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                      <span className="text-3xl font-bold text-gray-900 w-24">
+                        14:30
+                      </span>
+                      <div>
+                        <h3 className="text-xl font-semibold text-deep">
+                          🥂 Велком
+                        </h3>
+                        <p className="text-gray-800">
+                          Встречаем гостей, напитки и закуски
+                        </p>
+                      </div>
+                    </div>
+                    <div></div>
+                  </div>
                 </div>
 
                 {/* 15:30 - Ceremony — картинка справа */}
-                <div className="grid md:grid-cols-[1fr_430px_1fr] gap-4 items-center p-4">
-                  <div className="hidden md:block"></div>
-                  <div className="flex items-center gap-4 justify-self-start bg-white/50 backdrop-blur-sm rounded-2xl p-3 w-full h-24 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                    <span className="text-3xl font-bold text-gray-900 w-24">
-                      15:30
-                    </span>
-                    <div>
-                      <h3 className="text-xl font-semibold text-deep">
-                        💍 Выездная регистрация
-                      </h3>
-                      <p className="text-gray-800">
-                        Самый торжественный момент
-                      </p>
-                    </div>
-                  </div>
-                  <img
-                    src="/images/3.jpg"
-                    alt="Мем 3"
-                    className="w-56 h-auto rounded-xl shadow-lg justify-self-start -my-6"
+                <div className="p-4">
+                  {/* Mobile accordion */}
+                  <ScheduleAccordion
+                    time="15:30"
+                    title="💍 Выездная регистрация"
+                    subtitle="Самый торжественный момент"
+                    memeImg="/images/3.jpg"
+                    memeAlt="Мем 3"
                   />
+                  {/* Desktop layout */}
+                  <div className="hidden md:grid grid-cols-[1fr_430px_1fr] gap-4 items-center">
+                    <div></div>
+                    <div className="flex items-center gap-4 justify-self-start bg-white/50 backdrop-blur-sm rounded-2xl p-3 w-full h-24 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                      <span className="text-3xl font-bold text-gray-900 w-24">
+                        15:30
+                      </span>
+                      <div>
+                        <h3 className="text-xl font-semibold text-deep">
+                          💍 Выездная регистрация
+                        </h3>
+                        <p className="text-gray-800">
+                          Самый торжественный момент
+                        </p>
+                      </div>
+                    </div>
+                    <img
+                      src="/images/3.jpg"
+                      alt="Мем 3"
+                      className="w-56 h-auto rounded-xl shadow-lg justify-self-start -my-6"
+                    />
+                  </div>
                 </div>
 
                 {/* 16:30 - Banquet — картинка слева */}
-                <div className="grid md:grid-cols-[1fr_430px_1fr] gap-4 items-center p-4">
-                  <div className="hidden md:flex justify-end">
-                    <img
-                      src="/images/4.jpg"
-                      alt="Мем 4"
-                      className="w-56 h-auto rounded-xl shadow-lg -my-6"
-                    />
-                  </div>
-                  <div className="flex items-center gap-4 justify-self-start bg-white/50 backdrop-blur-sm rounded-2xl p-3 w-full h-24 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                    <span className="text-3xl font-bold text-gray-900 w-24">
-                      16:30
-                    </span>
-                    <div>
-                      <h3 className="text-xl font-semibold text-deep">
-                        🍽️ Банкет
-                      </h3>
-                      <p className="text-gray-800">
-                        Вкусная еда, тосты и веселье
-                      </p>
-                    </div>
-                  </div>
-                  <img
-                    src="/images/4.jpg"
-                    alt="Мем 4"
-                    className="md:hidden w-48 h-auto rounded-xl shadow-lg"
+                <div className="p-4">
+                  {/* Mobile accordion */}
+                  <ScheduleAccordion
+                    time="16:30"
+                    title="🍽️ Банкет"
+                    subtitle="Вкусная еда, тосты и веселье"
+                    memeImg="/images/4.jpg"
+                    memeAlt="Мем 4"
                   />
-                  <div className="hidden md:block"></div>
+                  {/* Desktop layout */}
+                  <div className="hidden md:grid grid-cols-[1fr_430px_1fr] gap-4 items-center">
+                    <div className="flex justify-end">
+                      <img
+                        src="/images/4.jpg"
+                        alt="Мем 4"
+                        className="w-56 h-auto rounded-xl shadow-lg -my-6"
+                      />
+                    </div>
+                    <div className="flex items-center gap-4 justify-self-start bg-white/50 backdrop-blur-sm rounded-2xl p-3 w-full h-24 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                      <span className="text-3xl font-bold text-gray-900 w-24">
+                        16:30
+                      </span>
+                      <div>
+                        <h3 className="text-xl font-semibold text-deep">
+                          🍽️ Банкет
+                        </h3>
+                        <p className="text-gray-800">
+                          Вкусная еда, тосты и веселье
+                        </p>
+                      </div>
+                    </div>
+                    <div></div>
+                  </div>
                 </div>
 
                 {/* 21:30 - Disco — картинка справа */}
-                <div className="grid md:grid-cols-[1fr_430px_1fr] gap-4 items-center p-4">
-                  <div className="hidden md:block"></div>
-                  <div className="flex items-center gap-4 justify-self-start bg-white/50 backdrop-blur-sm rounded-2xl p-3 w-full h-24 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                    <span className="text-3xl font-bold text-gray-900 w-24">
-                      21:30
-                    </span>
-                    <div>
-                      <h3 className="text-xl font-semibold text-deep">
-                        🪩 Дискотека
-                      </h3>
-                      <p className="text-gray-800">Танцуем до упаду!</p>
-                    </div>
-                  </div>
-                  <img
-                    src="/images/5.jpg"
-                    alt="Мем 5"
-                    className="w-56 h-auto rounded-xl shadow-lg justify-self-start -my-6"
+                <div className="p-4">
+                  {/* Mobile accordion */}
+                  <ScheduleAccordion
+                    time="21:30"
+                    title="🪩 Дискотека"
+                    subtitle="Танцуем до упаду!"
+                    memeImg="/images/5.jpg"
+                    memeAlt="Мем 5"
                   />
+                  {/* Desktop layout */}
+                  <div className="hidden md:grid grid-cols-[1fr_430px_1fr] gap-4 items-center">
+                    <div></div>
+                    <div className="flex items-center gap-4 justify-self-start bg-white/50 backdrop-blur-sm rounded-2xl p-3 w-full h-24 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                      <span className="text-3xl font-bold text-gray-900 w-24">
+                        21:30
+                      </span>
+                      <div>
+                        <h3 className="text-xl font-semibold text-deep">
+                          🪩 Дискотека
+                        </h3>
+                        <p className="text-gray-800">Танцуем до упаду!</p>
+                      </div>
+                    </div>
+                    <img
+                      src="/images/5.jpg"
+                      alt="Мем 5"
+                      className="w-56 h-auto rounded-xl shadow-lg justify-self-start -my-6"
+                    />
+                  </div>
                 </div>
 
                 {/* 22:30 - End — картинка слева */}
-                <div className="grid md:grid-cols-[1fr_430px_1fr] gap-4 items-center p-4">
-                  <div className="hidden md:flex justify-end">
-                    <img
-                      src="/images/6.jpg"
-                      alt="Мем 6"
-                      className="w-56 h-auto rounded-xl shadow-lg -my-6"
-                    />
-                  </div>
-                  <div className="flex items-center gap-4 justify-self-start bg-white/50 backdrop-blur-sm rounded-2xl p-3 w-full h-24 hover:scale-105 transition-transform duration-300 cursor-pointer">
-                    <span className="text-3xl font-bold text-gray-900 w-24">
-                      22:30
-                    </span>
-                    <div>
-                      <h3 className="text-xl font-semibold text-deep">
-                        🌙 Завершение вечера
-                      </h3>
-                      <p className="text-gray-800">
-                        Автобус отвезёт обратно к метро
-                      </p>
-                    </div>
-                  </div>
-                  <img
-                    src="/images/6.jpg"
-                    alt="Мем 6"
-                    className="md:hidden w-48 h-auto rounded-xl shadow-lg"
+                <div className="p-4">
+                  {/* Mobile accordion */}
+                  <ScheduleAccordion
+                    time="22:30"
+                    title="🌙 Завершение вечера"
+                    subtitle="Автобус отвезёт обратно к метро"
+                    memeImg="/images/6.jpg"
+                    memeAlt="Мем 6"
                   />
-                  <div className="hidden md:block"></div>
+                  {/* Desktop layout */}
+                  <div className="hidden md:grid grid-cols-[1fr_430px_1fr] gap-4 items-center">
+                    <div className="flex justify-end">
+                      <img
+                        src="/images/6.jpg"
+                        alt="Мем 6"
+                        className="w-56 h-auto rounded-xl shadow-lg -my-6"
+                      />
+                    </div>
+                    <div className="flex items-center gap-4 justify-self-start bg-white/50 backdrop-blur-sm rounded-2xl p-3 w-full h-24 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                      <span className="text-3xl font-bold text-gray-900 w-24">
+                        22:30
+                      </span>
+                      <div>
+                        <h3 className="text-xl font-semibold text-deep">
+                          🌙 Завершение вечера
+                        </h3>
+                        <p className="text-gray-800">
+                          Автобус отвезёт обратно к метро
+                        </p>
+                      </div>
+                    </div>
+                    <div></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -456,11 +583,11 @@ export default function Home() {
 
           <div className="max-w-5xl mx-auto relative z-10">
             <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-              <div className="text-center md:text-left flex-1 bg-white/70 backdrop-blur-sm rounded-2xl p-5">
-                <p className="text-accent font-semibold uppercase tracking-widest mb-2">
+              <div className="text-left flex-1 bg-white/70 backdrop-blur-sm rounded-2xl p-5">
+                <p className="text-accent font-semibold uppercase tracking-widest mb-2 text-center md:text-left">
                   👗 Дресс-код
                 </p>
-                <h2 className="text-3xl md:text-4xl font-bold text-deep mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-deep mb-4 text-center md:text-left">
                   Надевайте любимое!
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-4">
@@ -481,7 +608,7 @@ export default function Home() {
               <img
                 src="/images/fashion.jpeg"
                 alt="Мода"
-                className="w-auto h-[250px] rounded-2xl shadow-xl"
+                className="w-auto h-[180px] md:h-[250px] rounded-2xl shadow-xl"
               />
             </div>
           </div>
@@ -499,30 +626,38 @@ export default function Home() {
               </h2>
               <p className="text-gray-600 mb-6">
                 Там будем делиться новостями, отвечать на вопросы
-                <br />и координироваться в день свадьбы
+                <br className="hidden md:inline" />
+                {" "}и координироваться в день свадьбы
               </p>
 
               <a
                 href="https://t.me/+XXXXX"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-blue-900 hover:bg-blue-800 text-white font-bold text-3xl font-['Nunito'] py-4 px-10 rounded-3xl transition-colors"
+                className="inline-block bg-blue-900 hover:bg-blue-800 text-white font-bold text-xl md:text-3xl font-['Nunito'] py-3 md:py-4 px-6 md:px-10 rounded-3xl transition-colors"
               >
                 Открыть чат в{" "}
                 <img
                   src="/images/Max.webp"
                   alt="MAX"
-                  className="h-8 w-auto inline-block align-middle ml-5"
+                  className="h-5 md:h-8 w-auto inline-block align-middle ml-2 md:ml-5"
                   style={{ transform: "translateY(-3px) scale(1.3)" }}
                 />
               </a>
+
+              {/* Maxwell gif - mobile only */}
+              <img
+                src="/images/maxwell.gif"
+                alt="Maxwell Cat"
+                className="md:hidden w-48 h-auto mx-auto mt-6 rounded-lg"
+              />
             </div>
           </div>
         </section>
 
         {/* ============ RSVP SECTION ============ */}
         <section
-          className="py-20 px-2 relative"
+          className="py-10 md:py-20 px-2 relative"
           style={{
             backgroundImage: "url(/images/windows.jpg)",
             backgroundSize: "cover",
@@ -531,7 +666,7 @@ export default function Home() {
           }}
         >
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="text-center mb-6 md:mb-12">
               <p className="text-deep font-bold uppercase tracking-widest mb-2">
                 ✍️ Подтверждение
               </p>
@@ -539,8 +674,9 @@ export default function Home() {
                 Вы придёте?
               </h2>
               <p className="text-deep font-bold text-lg">
-                Пожалуйста, заполните форму до{" "}
-                <span className="text-red-900">30 марта 2026</span>
+                Пожалуйста, заполните форму до
+                <br className="md:hidden" />
+                {" "}<span className="text-red-900">30 марта 2026</span>
               </p>
             </div>
 
@@ -552,7 +688,7 @@ export default function Home() {
                   className="w-80 h-auto rounded-lg"
                 />
               </div>
-              <div className="flex-shrink-0">
+              <div className="flex-shrink-0 scale-[0.833] md:scale-100 origin-top -mb-20 md:mb-0">
                 <RSVPForm />
               </div>
               <div className="hidden md:block flex-shrink-0">
@@ -573,7 +709,7 @@ export default function Home() {
               <img
                 src="/images/couple.jpg"
                 alt="Витя и Марина"
-                className="w-[960px] md:w-[1152px] h-auto mx-auto rounded-2xl shadow-2xl border-4 border-white/20"
+                className="w-full max-w-[960px] md:max-w-[1152px] h-auto mx-auto rounded-2xl shadow-2xl border-4 border-white/20"
               />
             </div>
 

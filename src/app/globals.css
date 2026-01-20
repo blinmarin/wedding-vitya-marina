@@ -347,16 +347,25 @@ body {
 
 /* Checkbox for inside image */
 .carousel-checkbox-small {
-  width: 56px;
-  height: 56px;
-  border: 4px solid white;
-  border-radius: 10px;
+  width: 28px;
+  height: 28px;
+  border: 2px solid white;
+  border-radius: 6px;
   background: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   appearance: none;
   position: relative;
   transition: all 0.2s;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 768px) {
+  .carousel-checkbox-small {
+    width: 56px;
+    height: 56px;
+    border: 4px solid white;
+    border-radius: 10px;
+  }
 }
 
 .carousel-checkbox-small:hover {
@@ -375,9 +384,15 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 32px;
+  font-size: 16px;
   font-weight: bold;
   color: white;
+}
+
+@media (min-width: 768px) {
+  .carousel-checkbox-small:checked::after {
+    font-size: 32px;
+  }
 }
 
 .carousel-checkbox-small:disabled {
@@ -470,4 +485,18 @@ body {
   50% {
     transform: translateX(-12px);
   }
+}
+
+/* Scale pulse animation */
+@keyframes scale-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.animate-scale-pulse {
+  animation: scale-pulse 1s ease-in-out infinite;
 }

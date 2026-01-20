@@ -17,7 +17,7 @@ export function MapReveal() {
 
   return (
     <>
-      <div className="flex flex-col gap-3 mt-4 max-w-[280px]">
+      <div className="flex flex-col gap-3 mt-4 max-w-[280px] mx-auto md:mx-0">
         {/* Fake map button */}
         <button
           onClick={handleOpenMap}
@@ -39,11 +39,26 @@ export function MapReveal() {
         )}
       </div>
 
-      {/* Metro info */}
-      <div className="mt-6 text-gray-600">
+      {/* Metro info - mobile version */}
+      <div className="mt-6 text-gray-600 text-center md:hidden">
+        <p className="mb-2">
+          Но не переживайте, мы отвезём вас туда на автобусе от{" "}
+          <a
+            href="https://yandex.com/maps/213/moscow/stops/6091017542/?ll=37.546511%2C55.921689&tab=overview&z=17.85"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-3 py-1 bg-mint text-white font-semibold rounded-xl shadow-md hover:bg-mint/80 hover:shadow-lg transition-all"
+          >
+            метро Физтех
+          </a>
+        </p>
+      </div>
+
+      {/* Metro info - desktop version */}
+      <div className="mt-6 text-gray-600 hidden md:block">
         <p>Но не переживайте,</p>
-        <div className=" text-gray-600 flex items-center gap-2">
-          <p className="mb-2">мы отвезем вас туда на автобусе от</p>
+        <div className="flex items-center gap-2">
+          <p className="mb-2">мы отвезём вас туда на автобусе от</p>
           <a
             href="https://yandex.com/maps/213/moscow/stops/6091017542/?ll=37.546511%2C55.921689&tab=overview&z=17.85"
             target="_blank"

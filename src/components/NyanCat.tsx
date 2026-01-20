@@ -10,10 +10,17 @@ export function NyanCat() {
     // Change direction and random position after animation completes
     const timer = setTimeout(() => {
       setDirection((prev) => (prev === "right" ? "left" : "right"));
-      // Random position in top 20% (0-20%) or bottom (60-80%) of viewport
-      // Bottom limit: 60% to (100% - gif height ≈ 20%) = 60-80%
+      
+      const isMobile = window.innerWidth < 768;
       const isTop = Math.random() > 0.5;
-      setTopPosition(isTop ? Math.random() * 20 : Math.random() * 20 + 60);
+      
+      if (isMobile) {
+        // Mobile: top 0-10%, bottom 70-80%
+        setTopPosition(isTop ? Math.random() * 10 : Math.random() * 10 + 70);
+      } else {
+        // Desktop: top 0-20%, bottom 60-80%
+        setTopPosition(isTop ? Math.random() * 20 : Math.random() * 20 + 60);
+      }
     }, 11500);
 
     return () => clearTimeout(timer);
