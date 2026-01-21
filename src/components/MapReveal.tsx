@@ -42,7 +42,7 @@ export function MapReveal() {
       {/* Metro info - mobile version */}
       <div className="mt-6 text-gray-600 text-center md:hidden">
         <p className="mb-2">
-          Но не переживайте, мы отвезём вас туда на автобусе от{" "}
+          Но не переживайте, мы отвезём вас туда<br />на автобусе от{" "}
           <a
             href="https://yandex.com/maps/213/moscow/stops/6091017542/?ll=37.546511%2C55.921689&tab=overview&z=17.85"
             target="_blank"

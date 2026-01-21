@@ -87,16 +87,20 @@ body {
 /* Polaroid frame style */
 .polaroid {
   background: white;
-  padding: 12px 12px 50px 12px;
+  padding: 12px;
   box-shadow:
     0 4px 6px rgba(0, 0, 0, 0.1),
     0 10px 20px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
 }
 
-.polaroid:hover {
-  transform: scale(1.05) rotate(2deg);
+@media (min-width: 768px) {
+  .polaroid {
+    padding: 18px 18px 20px 18px;
+  }
 }
+
+/* Hover effect removed - rotation handled by wrapper in page.tsx */
 
 /* Demotivator style */
 .demotivator {

@@ -14,7 +14,7 @@ export default function Home() {
       <div>
         {/* ============ HERO SECTION ============ */}
         <section
-          className="relative min-h-screen flex flex-col items-center justify-center px-[18px] md:px-2 py-16 overflow-hidden"
+          className="relative min-h-screen flex flex-col items-center justify-center px-[36px] md:px-2 py-16 overflow-hidden"
         >
           {/* Background image - mobile: rotated, natural size, repeating */}
           <div
@@ -50,29 +50,29 @@ export default function Home() {
           </div>
 
           {/* Childhood photos in Polaroid style */}
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16 mb-12 relative z-10">
+          <div className="flex justify-center gap-10 md:gap-16 mb-11 relative z-10">
             <div className="transform -rotate-6 hover:rotate-0 transition-transform duration-300">
-              <div className="polaroid">
+              <div className="polaroid text-center">
                 <img
                   src="/images/marina-child.png"
                   alt="Марина в детстве"
                   className="w-48 md:w-56 h-auto"
                 />
-                <p className="absolute bottom-4 left-0 right-0 text-center font-['Caveat'] text-xl text-gray-700">
-                  Уже тогда знала, что будет принцессой
+                <p className="text-xl md:text-2xl font-semibold text-gray-700 mt-5">
+                  Невеста
                 </p>
               </div>
             </div>
 
             <div className="transform rotate-6 hover:rotate-0 transition-transform duration-300">
-              <div className="polaroid">
+              <div className="polaroid text-center">
                 <img
-                  src="/images/vitya-child.png"
+                  src="/images/vitya-child.jpg"
                   alt="Витя в детстве"
                   className="w-48 md:w-56 h-auto"
                 />
-                <p className="absolute bottom-4 left-0 right-0 text-center font-['Caveat'] text-xl text-gray-700">
-                  Уже тогда был готов нести пакеты
+                <p className="text-xl md:text-2xl font-semibold text-gray-700 mt-5">
+                  Жених
                 </p>
               </div>
             </div>
