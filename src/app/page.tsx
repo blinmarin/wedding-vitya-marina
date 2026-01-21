@@ -14,7 +14,7 @@ export default function Home() {
       <div>
         {/* ============ HERO SECTION ============ */}
         <section
-          className="relative min-h-screen flex flex-col items-center justify-center px-2 py-16 overflow-hidden"
+          className="relative min-h-screen flex flex-col items-center justify-center px-[18px] md:px-2 py-16 overflow-hidden"
         >
           {/* Background image - mobile: rotated, natural size, repeating */}
           <div
@@ -80,7 +80,7 @@ export default function Home() {
         </section>
 
         {/* ============ INVITATION SECTION ============ */}
-        <section className="pt-16 md:pt-32 pb-16 md:pb-32 px-4 bg-white">
+        <section className="pt-16 md:pt-32 pb-16 md:pb-32 px-[18px] md:px-4 bg-white">
           <div className="max-w-7xl mx-auto">
             
 
@@ -228,7 +228,7 @@ export default function Home() {
 
         {/* ============ DATE SECTION ============ */}
         <section
-          className="py-20 px-2 relative"
+          className="py-20 px-[18px] md:px-2 relative"
           style={{
             backgroundImage: "url(/images/pepe.jpg)",
             backgroundSize: "auto 100%",
@@ -272,7 +272,7 @@ export default function Home() {
         </section>
 
         {/* ============ LOCATION SECTION ============ */}
-        <section className="py-20 px-2 bg-emerald-50">
+        <section className="py-20 px-[18px] md:px-2 bg-emerald-50">
           <div className="max-w-5xl mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-center gap-8">
               <div className="text-center md:text-left flex-1">
@@ -312,7 +312,7 @@ export default function Home() {
 
         {/* ============ SCHEDULE SECTION ============ */}
         <section
-          className="py-20 px-2 relative"
+          className="py-20 px-[18px] md:px-2 relative"
           style={{
             backgroundImage: "url(/images/galaxy.jpg)",
             backgroundSize: "cover",
@@ -548,7 +548,7 @@ export default function Home() {
         </section>
 
         {/* ============ GIFT SECTION ============ */}
-        <section className="py-20 px-2 bg-yellow-50">
+        <section className="py-20 px-[18px] md:px-2 bg-yellow-50">
           <div className="max-w-5xl mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-center gap-8">
               <div className="text-center md:text-left flex-1">
@@ -570,7 +570,7 @@ export default function Home() {
 
         {/* ============ DRESS CODE SECTION ============ */}
         <section
-          className="py-20 px-2 relative"
+          className="py-20 px-[18px] md:px-2 relative"
           style={{
             backgroundImage: "url(/images/doggy.jpg)",
             backgroundSize: "cover",
@@ -615,7 +615,7 @@ export default function Home() {
         </section>
 
         {/* ============ TELEGRAM SECTION ============ */}
-        <section className="py-20 px-2 bg-blue-50">
+        <section className="py-20 px-[18px] md:px-2 bg-blue-50">
           <div className="max-w-5xl mx-auto text-center">
             <div className="inline-block">
               <p className="text-blue-500 font-semibold uppercase tracking-widest mb-2">
@@ -657,7 +657,7 @@ export default function Home() {
 
         {/* ============ RSVP SECTION ============ */}
         <section
-          className="py-10 md:py-20 px-2 relative"
+          className="py-10 md:py-20 px-[18px] md:px-2 relative overflow-hidden"
           style={{
             backgroundImage: "url(/images/windows.jpg)",
             backgroundSize: "cover",
@@ -703,7 +703,7 @@ export default function Home() {
         </section>
 
         {/* ============ FINAL SECTION ============ */}
-        <section className="py-20 px-2 bg-deep text-white">
+        <section className="py-20 px-[18px] md:px-2 bg-deep text-white">
           <div className="max-w-5xl mx-auto text-center">
             <div className="mb-12">
               <img

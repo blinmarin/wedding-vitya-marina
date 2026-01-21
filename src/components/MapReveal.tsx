@@ -83,10 +83,10 @@ export function MapReveal() {
               alt="Карта"
               className="max-w-[80vw] max-h-[80vh] object-contain rounded-lg shadow-2xl"
             />
-            <p className="text-center text-white text-lg font-semibold mt-4">Карта</p>
+            <p className="text-center text-white text-3xl font-semibold mt-4">Карта</p>
             <button
               onClick={handleCloseImage}
-              className="absolute -top-4 -right-4 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-2xl hover:bg-red-100 transition-colors"
+              className="absolute -top-4 -right-4 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-2xl hover:bg-red-100 transition-colors cursor-pointer"
             >
               ×
             </button>

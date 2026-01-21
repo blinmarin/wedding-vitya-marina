@@ -40,7 +40,7 @@ export function NyanCat() {
         <img
           src="/images/nyan-cat.gif"
           alt="Nyan Cat"
-          className="w-[480px] h-auto"
+          className="w-[369px] md:w-[480px] h-auto"
           style={{
             transform: direction === "left" ? "scaleX(-1)" : "scaleX(1)",
           }}

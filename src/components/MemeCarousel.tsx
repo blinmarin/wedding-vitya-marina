@@ -318,12 +318,13 @@ export function MemeCarousel() {
               : "border-white bg-white"
           }`}
         >
-          <img
+                    <img
             src={currentMeme.src}
             alt="Мем"
+            onClick={() => !isCurrentSelected && handleCheckboxChange(currentIndex)}
             className={`w-full aspect-video object-contain rounded-lg transition-all duration-300 ${
               isCurrentWrong ? "opacity-50 grayscale" : ""
-            }`}
+            } ${!isCurrentSelected ? "cursor-pointer" : ""}`}
           />
 
           {/* Wrong answer overlay */}

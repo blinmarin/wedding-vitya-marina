@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { DraggableXPWindow } from "./DraggableXPWindow";
 
 interface FormData {
   name: string;
@@ -17,6 +18,8 @@ export function RSVPForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [showNameError, setShowNameError] = useState(false);
+  const [showAttendingError, setShowAttendingError] = useState(false);
 
   const alcoholOptions = [
     { id: "champagne", label: "🍾 Шампанское" },
@@ -44,6 +47,19 @@ export function RSVPForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Validate step by step
+    if (!formData.name) {
+      setShowNameError(true);
+      setShowAttendingError(false);
+      return;
+    }
+    
+    if (!formData.attending) {
+      setShowNameError(false);
+      setShowAttendingError(true);
+      return;
+    }
+
     setIsSubmitting(true);
 
     // Format data for Google Sheets
@@ -83,7 +99,7 @@ export function RSVPForm() {
 
   if (isSubmitted) {
     return (
-      <div className="xp-window max-w-lg mx-auto">
+      <DraggableXPWindow>
         <div className="xp-titlebar">
           <span>✅ Ответ отправлен!</span>
           <div className="flex gap-1">
@@ -110,7 +126,7 @@ export function RSVPForm() {
             Ваш ответ сохранён. Ждём вас на свадьбе!
           </p>
         </div>
-      </div>
+      </DraggableXPWindow>
     );
   }
 
@@ -148,7 +164,6 @@ export function RSVPForm() {
           </label>
           <input
             type="text"
-            required
             value={formData.name}
             onChange={(e) =>
               setFormData((prev) => ({ ...prev, name: e.target.value }))
@@ -156,6 +171,11 @@ export function RSVPForm() {
             className="retro-input"
             placeholder="Иван Иванов"
           />
+          {showNameError && !formData.name && (
+            <p className="text-red-600 text-sm mt-2 font-semibold">
+              ⚠️ Нельзя просто так взять и пропустить этот вопрос
+            </p>
+          )}
         </div>
 
         {/* Attendance */}
@@ -163,7 +183,7 @@ export function RSVPForm() {
           <label className="block text-sm font-semibold text-deep mb-2">
             🎯 Вы придёте?
           </label>
-          <div className="space-y-2">
+          <div className={`space-y-2 p-2 rounded-lg transition-all ${showAttendingError && !formData.attending ? "border-2 border-red-500 bg-red-50" : ""}`}>
             <label className="flex items-center gap-3 cursor-pointer p-2 hover:bg-white/50 rounded">
               <input
                 type="radio"
@@ -213,6 +233,11 @@ export function RSVPForm() {
               <span>😢 К сожалению, не смогу</span>
             </label>
           </div>
+          {showAttendingError && !formData.attending && (
+            <p className="text-red-600 text-sm mt-2 font-semibold">
+              ⚠️ Нельзя просто так взять и пропустить этот вопрос
+            </p>
+          )}
         </div>
 
         {/* Alcohol preferences */}
@@ -247,7 +272,7 @@ export function RSVPForm() {
         <div className="pt-4">
           <button
             type="submit"
-            disabled={isSubmitting || !formData.name || !formData.attending}
+            disabled={isSubmitting}
             className={`w-full retro-button text-lg font-bold ${
               isSubmitting ? "opacity-50 cursor-wait" : "hover:bg-sunny"
             }`}
