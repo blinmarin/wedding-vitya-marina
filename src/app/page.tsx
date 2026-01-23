@@ -41,8 +41,8 @@ export default function Home() {
 
           {/* Main content */}
           <div className="text-center mb-12 relative z-10">
-            <p className="text-lg text-white font-semibold mb-2 tracking-widest uppercase">
-              Приглашение на свадьбу
+            <p className="text-3xl text-white font-bold  mb-2 tracking-widest uppercase">
+              Мы женимся!
             </p>
             <h1 className="font-['Lobster'] text-7xl md:text-9xl text-white mb-4">
               Витя <span className="text-white">&</span> Марина
@@ -375,7 +375,7 @@ export default function Home() {
                   <ScheduleAccordion
                     time="14:30"
                     title="🥂 Велком"
-                    subtitle="Встречаем гостей, напитки и закуски"
+                    subtitle="Напитки и закуски"
                     memeImg="/images/2.jpg"
                     memeAlt="Мем 2"
                   />
@@ -410,7 +410,7 @@ export default function Home() {
                   {/* Mobile accordion */}
                   <ScheduleAccordion
                     time="15:30"
-                    title="💍 Выездная регистрация"
+                    title="💍 Церемония"
                     subtitle="Самый торжественный момент"
                     memeImg="/images/3.jpg"
                     memeAlt="Мем 3"
@@ -424,7 +424,7 @@ export default function Home() {
                       </span>
                       <div>
                         <h3 className="text-xl font-semibold text-deep">
-                          💍 Выездная регистрация
+                          💍 Церемония
                         </h3>
                         <p className="text-gray-800">
                           Самый торжественный момент

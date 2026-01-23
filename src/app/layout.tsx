@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Витя & Марина — 30 мая 2026",
-  description: "Приглашение на свадьбу Вити и Марины. Остров Любви ждёт!",
+  description: "Приглашение на свадьбу Вити и Марины",
   icons: {
     icon: {
       url: "/icon.png",
