@@ -22,13 +22,13 @@ export function RSVPForm() {
   const [showAttendingError, setShowAttendingError] = useState(false);
 
   const alcoholOptions = [
+    { id: "beer", label: "🍺 Пивка для рывка" },
     { id: "champagne", label: "🍾 Шампанское" },
     { id: "wine-red", label: "🍷 Красное вино" },
     { id: "wine-white", label: "🥂 Белое вино" },
     { id: "vodka", label: "🥃 Водка (на донышке)" },
     { id: "whiskey", label: "🥃 Виски" },
     { id: "cognac", label: "🥃 Коньяк" },
-    { id: "beer", label: "🍺 Пивка для рывка" },
     {
       id: "tea",
       label: "🍵 Чай — он так утоляет жажду, я чувствую себя человеком",
