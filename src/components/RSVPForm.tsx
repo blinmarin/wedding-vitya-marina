@@ -22,18 +22,19 @@ export function RSVPForm() {
   const [showAttendingError, setShowAttendingError] = useState(false);
 
   const alcoholOptions = [
-    { id: "beer", label: "🍺 Пивка для рывка" },
-    { id: "champagne", label: "🍾 Шампанское" },
-    { id: "wine-red", label: "🍷 Красное вино" },
-    { id: "wine-white", label: "🥂 Белое вино" },
-    { id: "vodka", label: "🥃 Водка (на донышке)" },
-    { id: "whiskey", label: "🥃 Виски" },
-    { id: "cognac", label: "🥃 Коньяк" },
+    { id: "beer", label: "🍺 Пивка для рывка", shortLabel: "Пиво" },
+    { id: "champagne", label: "🍾 Шампанское", shortLabel: "Шампанское" },
+    { id: "wine-red", label: "🍷 Красное вино", shortLabel: "Красное вино" },
+    { id: "wine-white", label: "🥂 Белое вино", shortLabel: "Белое вино" },
+    { id: "vodka", label: "🥃 Водка (на донышке)", shortLabel: "Водка" },
+    { id: "whiskey", label: "🥃 Виски", shortLabel: "Виски" },
+    { id: "cognac", label: "🥃 Коньяк", shortLabel: "Коньяк" },
     {
       id: "tea",
       label: "🍵 Чай — он так утоляет жажду, я чувствую себя человеком",
+      shortLabel: "Чай",
     },
-    { id: "non-alcohol", label: "🧃 Безалкогольные напитки" },
+    { id: "non-alcohol", label: "🧃 Безалкогольные напитки", shortLabel: "Б/а напитки" },
   ];
 
   const handleAlcoholChange = (id: string) => {
@@ -67,7 +68,7 @@ export function RSVPForm() {
       name: formData.name,
       attending: formData.attending,
       alcohol: formData.alcohol
-        .map((id) => alcoholOptions.find((opt) => opt.id === id)?.label || id)
+        .map((id) => alcoholOptions.find((opt) => opt.id === id)?.shortLabel || id)
         .join(", "),
     };
 
