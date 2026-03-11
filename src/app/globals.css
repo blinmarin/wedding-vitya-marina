@@ -262,15 +262,13 @@ body {
 }
 
 .retro-checkbox:checked::after {
-  content: '';
+  content: '✓';
   position: absolute;
-  left: 4px;
-  top: 1px;
-  width: 6px;
-  height: 10px;
-  border: solid var(--color-deep);
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: var(--color-deep);
 }
 
 /* Firework animations */
