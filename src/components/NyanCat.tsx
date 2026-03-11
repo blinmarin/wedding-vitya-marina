@@ -29,7 +29,7 @@ export function NyanCat() {
   return (
     <>
       {/* Toggle checkbox */}
-      <label className="fixed top-3 right-3 z-[60] flex items-center gap-2 cursor-pointer select-none bg-white/80 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-md hover:shadow-lg transition-shadow">
+      <label className="fixed bottom-3 right-3 z-60 flex items-center gap-2 cursor-pointer select-none bg-white/80 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-md hover:shadow-lg transition-shadow">
         <input
           type="checkbox"
           checked={isOff}
