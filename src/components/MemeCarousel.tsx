@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
 const memes = [
   { src: "/images/meme-welding.jpg", isCorrect: false },
@@ -249,20 +250,41 @@ function Fireworks() {
   );
 }
 
+const slideVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 300 : -300,
+    opacity: 0,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+  },
+  exit: (direction: number) => ({
+    x: direction < 0 ? 300 : -300,
+    opacity: 0,
+  }),
+};
+
 export function MemeCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [[page, direction], setPage] = useState([0, 0]);
   const [selectedAnswers, setSelectedAnswers] = useState<
     Record<number, boolean>
   >({});
   const [showFireworks, setShowFireworks] = useState(false);
 
-  const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? memes.length - 1 : prev - 1));
-  };
+  const paginate = useCallback((newDirection: number) => {
+    setCurrentIndex((prev) => {
+      const next = newDirection > 0
+        ? (prev === memes.length - 1 ? 0 : prev + 1)
+        : (prev === 0 ? memes.length - 1 : prev - 1);
+      return next;
+    });
+    setPage(([prev]) => [prev + newDirection, newDirection]);
+  }, []);
 
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev === memes.length - 1 ? 0 : prev + 1));
-  };
+  const goToPrevious = () => paginate(-1);
+  const goToNext = () => paginate(1);
 
   const handleCheckboxChange = (index: number) => {
     const isCorrect = memes[index].isCorrect;
@@ -308,57 +330,83 @@ export function MemeCarousel() {
           </svg>
         </button>
 
-        {/* Image container - height ~325px with 16:9 aspect ratio */}
-        <div
-          className={`relative w-[240px] sm:w-[320px] md:w-[578px] rounded-xl border-4 shadow-xl transition-all duration-300 ${
-            isCurrentWrong
-              ? "border-red-500 bg-red-100"
-              : isCurrentSelected && isCurrentCorrect
-              ? "border-green-500 bg-green-100"
-              : "border-white bg-white"
-          }`}
-        >
-                    <img
-            src={currentMeme.src}
-            alt="Мем"
-            onClick={() => !isCurrentSelected && handleCheckboxChange(currentIndex)}
-            className={`w-full aspect-video object-contain rounded-lg transition-all duration-300 ${
-              isCurrentWrong ? "opacity-50 grayscale" : ""
-            } ${!isCurrentSelected ? "cursor-pointer" : ""}`}
-          />
-
-          {/* Wrong answer overlay */}
-          {isCurrentWrong && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-6xl animate-shake">❌</span>
-            </div>
-          )}
-
-          {/* Pointing hand emoji - draws attention to checkbox */}
-          {!isCurrentSelected && (
-            <div
-              className="absolute bottom-4 right-10 md:right-20 text-2xl md:text-6xl animate-point-down"
-              style={{ animation: "point-bounce 1.5s ease-in-out infinite" }}
+        {/* Image container with swipe support */}
+        <div className="relative w-[240px] sm:w-[320px] md:w-[578px] overflow-hidden">
+          <AnimatePresence initial={false} custom={direction} mode="popLayout">
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 },
+              }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={1}
+              onDragEnd={(_e, { offset, velocity }) => {
+                const swipe = Math.abs(offset.x) * velocity.x;
+                if (swipe < -5000) {
+                  paginate(1);
+                } else if (swipe > 5000) {
+                  paginate(-1);
+                }
+              }}
+              className={`relative rounded-xl border-4 shadow-xl ${
+                isCurrentWrong
+                  ? "border-red-500 bg-red-100"
+                  : isCurrentSelected && isCurrentCorrect
+                  ? "border-green-500 bg-green-100"
+                  : "border-white bg-white"
+              }`}
             >
-              👉
-            </div>
-          )}
+              <img
+                src={currentMeme.src}
+                alt="Мем"
+                onClick={() => !isCurrentSelected && handleCheckboxChange(currentIndex)}
+                draggable={false}
+                className={`w-full aspect-video object-contain rounded-lg transition-all duration-300 ${
+                  isCurrentWrong ? "opacity-50 grayscale" : ""
+                } ${!isCurrentSelected ? "cursor-pointer" : ""}`}
+              />
 
-          {/* Checkbox - inside image, bottom-right */}
-          <label className="absolute bottom-3 right-3 cursor-pointer z-10">
-            <input
-              type="checkbox"
-              checked={isCurrentSelected || false}
-              onChange={() => handleCheckboxChange(currentIndex)}
-              disabled={isCurrentSelected}
-              className="carousel-checkbox-small"
-            />
-          </label>
+              {/* Wrong answer overlay */}
+              {isCurrentWrong && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-6xl animate-shake">❌</span>
+                </div>
+              )}
 
-          {/* Fireworks animation for correct answer */}
-          {showFireworks && isCurrentSelected && isCurrentCorrect && (
-            <Fireworks />
-          )}
+              {/* Pointing hand emoji - draws attention to checkbox */}
+              {!isCurrentSelected && (
+                <div
+                  className="absolute bottom-4 right-10 md:right-20 text-2xl md:text-6xl animate-point-down"
+                  style={{ animation: "point-bounce 1.5s ease-in-out infinite" }}
+                >
+                  👉
+                </div>
+              )}
+
+              {/* Checkbox - inside image, bottom-right */}
+              <label className="absolute bottom-3 right-3 cursor-pointer z-10">
+                <input
+                  type="checkbox"
+                  checked={isCurrentSelected || false}
+                  onChange={() => handleCheckboxChange(currentIndex)}
+                  disabled={isCurrentSelected}
+                  className="carousel-checkbox-small"
+                />
+              </label>
+
+              {/* Fireworks animation for correct answer */}
+              {showFireworks && isCurrentSelected && isCurrentCorrect && (
+                <Fireworks />
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Next button */}
@@ -386,11 +434,18 @@ export function MemeCarousel() {
       {/* Dots indicator */}
       <div className="flex justify-center gap-2 mt-4">
         {memes.map((meme, index) => (
-          <span
+          <button
             key={index}
-            className={`w-3 h-3 rounded-full transition-colors ${
+            onClick={() => {
+              if (index !== currentIndex) {
+                const newDirection = index > currentIndex ? 1 : -1;
+                setCurrentIndex(index);
+                setPage(([prev]) => [prev + newDirection, newDirection]);
+              }
+            }}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
               index === currentIndex
-                ? "bg-accent"
+                ? "bg-accent scale-125"
                 : selectedAnswers[index]
                 ? meme.isCorrect
                   ? "bg-green-500"

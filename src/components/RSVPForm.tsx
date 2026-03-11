@@ -72,8 +72,7 @@ export function RSVPForm() {
     };
 
     try {
-      const GOOGLE_SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbwnHt9u04ILFH-Q_BS_6zaSs2vvSJkQGJGdxaR_kSyOkAzDMYxP8BwMvuY0P5VVbGfX/exec";
+      const GOOGLE_SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL;
 
       const params = new URLSearchParams({
         name: submitData.name,

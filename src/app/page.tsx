@@ -631,7 +631,7 @@ export default function Home() {
               </p>
 
               <a
-                href="https://t.me/+XXXXX"
+                href={process.env.NEXT_PUBLIC_TELEGRAM_CHAT_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-blue-900 hover:bg-blue-800 text-white font-bold text-xl md:text-3xl font-['Nunito'] py-3 md:py-4 px-6 md:px-10 rounded-3xl transition-colors"

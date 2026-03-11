@@ -37,5 +37,8 @@ jobs:
           context: .
           push: true
           tags: ${{ vars.REGISTRY_URL }}/wedding/web:${{ steps.meta.outputs.tag }}
+          build-args: |
+            NEXT_PUBLIC_TELEGRAM_CHAT_LINK=${{ secrets.NEXT_PUBLIC_TELEGRAM_CHAT_LINK }}
+            NEXT_PUBLIC_GOOGLE_SCRIPT_URL=${{ secrets.NEXT_PUBLIC_GOOGLE_SCRIPT_URL }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
