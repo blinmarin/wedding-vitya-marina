@@ -63,22 +63,21 @@ export function RSVPForm() {
 
     setIsSubmitting(true);
 
-    // Format data for Google Sheets
-    const submitData = {
-      name: formData.name,
-      attending: formData.attending,
-      alcohol: formData.alcohol
-        .map((id) => alcoholOptions.find((opt) => opt.id === id)?.shortLabel || id)
-        .join(", "),
-    };
-
     try {
       const GOOGLE_SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL;
 
       const params = new URLSearchParams({
-        name: submitData.name,
-        attending: submitData.attending,
-        alcohol: submitData.alcohol,
+        name: formData.name,
+        attending: formData.attending,
+        beer: formData.alcohol.includes("beer") ? "1" : "",
+        champagne: formData.alcohol.includes("champagne") ? "1" : "",
+        wineWhite: formData.alcohol.includes("wine-white") ? "1" : "",
+        wineRed: formData.alcohol.includes("wine-red") ? "1" : "",
+        vodka: formData.alcohol.includes("vodka") ? "1" : "",
+        whiskey: formData.alcohol.includes("whiskey") ? "1" : "",
+        cognac: formData.alcohol.includes("cognac") ? "1" : "",
+        tea: formData.alcohol.includes("tea") ? "1" : "",
+        nonAlcohol: formData.alcohol.includes("non-alcohol") ? "1" : "",
       });
 
       await fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, {
